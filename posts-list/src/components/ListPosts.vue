@@ -5,6 +5,7 @@
       <span class="mt-3 text-sm text-gray-500">Learning about codes</span>
       <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
         <div v-for="item in list" :key="item">
+          <a href="/detail">
           <div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
             <div class="flex items-end justify-end h-56 w-full bg-cover">
               <img src="https://cdn.pixabay.com/photo/2015/09/05/20/02/coding-924920_960_720.jpg" alt="image post" />
@@ -17,6 +18,7 @@
               </span>
             </div>
           </div>
+         </a>
         </div>
       </div>
     </div>
@@ -24,6 +26,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'ListPosts',
   data() {

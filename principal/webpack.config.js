@@ -1,14 +1,23 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ModuleFederationPlugin = require('webpack').container.ModuleFederationPlugin;
 
+const path = require('path');
 const deps = require('./package.json').dependencies;
 
 module.exports = {
   entry: './src/index',
   mode: 'development',
   devServer: {
+    contentBase: path.join(__dirname, 'dist'),
     port: 3000,
-    historyApiFallback: true
+    historyApiFallback: true,
+    hot: false,
+    hotOnly: false,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+      'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
+    }
   },
   resolve: {
     extensions: ['.js', '.mjs', '.jsx', '.css'],
@@ -41,13 +50,14 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: 'root',
+      name: 'principal',
       filename: 'remoteEntry.js',
       remotes: {
+        postdetails: 'postdetails@http://localhost:3002/remoteEntry.js',
         postslist: 'postslist@http://localhost:3001/remoteEntry.js'
       },
       exposes: {
-        './Root': './src/Root'
+        './Principal': './src/Principal'
       },
       shared: [
         {

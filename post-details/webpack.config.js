@@ -8,8 +8,16 @@ module.exports = {
   entry: './src/index',
   mode: 'development',
   devServer: {
+    contentBase: path.join(__dirname, 'dist'),
     port: 3002,
-    historyApiFallback: true
+    historyApiFallback: true,
+    hot: false,
+    hotOnly: false,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+      'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
+    }
   },
   resolve: {
     extensions: ['.js', '.mjs', '.jsx', '.css'],
@@ -45,7 +53,7 @@ module.exports = {
       name: 'postdetails',
       filename: 'remoteEntry.js',
       remotes: {
-        root: 'root@http://localhost:3000/remoteEntry.js'
+        principal: 'principal@http://localhost:3000/remoteEntry.js'
       },
       exposes: {
         './PostDetails': './src/PostDetails'

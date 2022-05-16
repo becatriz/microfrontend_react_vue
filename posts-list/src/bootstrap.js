@@ -1,9 +1,20 @@
 import Vue from 'vue';
 import App from './App';
+import VueRouter from 'vue-router';
+
+Vue.use(VueRouter);
+
+const router = new VueRouter({
+  mode: 'history',
+  routes: [{ path: '/detail', name: 'details' }]
+});
+
+const app = new Vue({
+  router,
+  render: (h) => h(App)
+});
 
 Vue.config.productionTip = false;
-
-const app = new Vue(App);
 
 function mountList(selector) {
   app.$mount(selector);

@@ -75,6 +75,11 @@ module.exports = {
           eager: true,
           singleton: true,
           requiredVersion: deps.vue
+        },
+        'vue-router': {
+          eager: true,
+          singleton: true,
+          requiredVersion: deps.vue
         }
       }
     }),
@@ -85,7 +90,8 @@ module.exports = {
   ],
   resolve: {
     alias: {
-      vue$: 'vue/dist/vue.runtime.esm.js'
+      vue$: 'vue/dist/vue.runtime.esm.js',
+      vue: 'vue/dist/vue.esm.js'
     },
     extensions: ['*', '.js', '.vue', '.json']
   }

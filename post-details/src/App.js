@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Root = React.lazy(() => import('root/Root'));
+const Principal = React.lazy(() => import('principal/Principal'));
 
 function App() {
   return (
     <React.Suspense fallback={'Loading...'}>
-      <Root />
+      <Principal />
     </React.Suspense>
   );
 }
